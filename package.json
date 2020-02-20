@@ -1,0 +1,18 @@
+{
+  "name": "tracking_ciian",
+  "version": "1.0.0",
+  "description": "Tracking Token 721 for CIIAN",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alan Escudero",
+  "license": "ISC",
+  "dependencies": {
+    "@openzeppelin/contracts": "^2.5.0",
+    "openzeppelin-solidity": "^2.5.0"
+  }
+}
