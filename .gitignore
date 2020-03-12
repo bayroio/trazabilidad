@@ -38,3 +38,7 @@
 ehthumbs.db
 Thumbs.db
 .openzeppelin\.session
+
+# Custom files #
+################
+.secret
