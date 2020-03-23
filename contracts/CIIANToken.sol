@@ -5,12 +5,11 @@
 //************************************************* */
 pragma solidity ^0.5.0;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721Full.sol";
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/drafts/Counters.sol";
-//import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v2.5.0/contracts/token/ERC721/ERC721Full.sol";
-//import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v2.5.0/contracts/token/ERC20/IERC20.sol";
-//import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v2.5.0/contracts/drafts/Counters.sol";
+//import '@openzeppelin/contracts/token/ERC721/ERC721Full.sol';
+//import "@openzeppelin/contracts/drafts/Counters.sol";
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v2.5.0/contracts/token/ERC721/ERC721Full.sol";
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v2.5.0/contracts/token/ERC20/IERC20.sol";
+import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v2.5.0/contracts/drafts/Counters.sol";
 
 contract CIIANToken is ERC721Full {
     //State Variables
@@ -26,7 +25,7 @@ contract CIIANToken is ERC721Full {
         uint16 numAcciones;
         address creacionAddress;
         //mapping (uint16 => uint32) Historia;
-        mapping (uint16 => Accion) Historia;
+        mapping (uint16 => Accion) Historia; // Y si mejor usamos un aproach similar al del DNA en los Gatos o Zombies?
     }
     
     //Esto deberia estar publico?
@@ -44,7 +43,7 @@ contract CIIANToken is ERC721Full {
     constructor() ERC721Full("CIIAN Token", "CIIANT") public {
     }
 //Quien crea el token sera el mismo que lo posea?
-    function createProduct(address _user, uint8 _tipoProducto, string memory _ubicacionAccion,
+    function createProduct(address _user, uint8 _tipoProducto, string memory _ubicacionAccion, 
     string memory _tokenURI) public returns (uint256) {
         _tokenIds.increment();
         uint256 newItemId = _tokenIds.current();
@@ -67,10 +66,18 @@ contract CIIANToken is ERC721Full {
     function getNumeroAcciones(uint256 _itemID) public view returns (uint16) {
         return (ProductoList[_itemID].numAcciones);
     }
-
+    
     function comprarToken(uint8 _tipoProducto, string calldata _ubicacionAccion, string calldata _tokenURI) external{
         address from = msg.sender;
         _token.transferFrom(from, address(this), 1000);
         createProduct(msg.sender, _tipoProducto, _ubicacionAccion, _tokenURI);
     }
+    
+    function getEstatusProducto(uint256 _itemID) public view returns (uint32 _idAccion, uint64 _horaAccion, 
+    string memory _ubicacionAccion, address _usuarioAccion) {
+        uint16 accionActual = ProductoList[_itemID].numAcciones;
+        return (ProductoList[_itemID].Historia[accionActual].idAccion, ProductoList[_itemID].Historia[accionActual].horaAccion, 
+        ProductoList[_itemID].Historia[accionActual].ubicacionAccion, ProductoList[_itemID].Historia[accionActual].usuarioAccion);
+    }
+
 }
