@@ -37,19 +37,19 @@ contract CIIANLib is ERC721Full {
     }
 
     //Events
-    event VerduraCreada(uint64 _creacionHora, uint8 _tipoProducto, address _creacionAddress);
-    event AccionTaken(uint8 _tipoProducto, uint32 _idAccion, uint64 _horaAccion, address _usuarioAccion);
+    event VerduraCreada(uint64 _creacionHora, uint8 _PLUCode, address _creacionAddress);
+    event AccionTaken(uint8 _PLUCode, uint32 _idAccion, uint64 _horaAccion, address _usuarioAccion);
 
     constructor() ERC721Full("CIIAN Token", "CIIANT") public {
     }
 
-    function createProduct(address _user, uint8 _tipoProducto, string memory _ubicacionAccion,
+    function createProduct(address _user, uint8 _PLUCode, string memory _ubicacionAccion,
     string memory _tokenURI) public returns (uint256) {
         _tokenIds.increment();
         uint256 newItemId = _tokenIds.current();
         //
         TokenList[newItemId].creacionHora = uint64(now);
-        TokenList[newItemId].tipoProducto = _tipoProducto;
+        TokenList[newItemId].PLUCode = _PLUCode;
         TokenList[newItemId].numAcciones = 1;
         TokenList[newItemId].creacionAddress = msg.sender;
         TokenList[newItemId].Historia[1].idAccion = 1;
@@ -59,7 +59,7 @@ contract CIIANLib is ERC721Full {
         //
         _mint(_user, newItemId);
         _setTokenURI(newItemId, _tokenURI);
-        emit VerduraCreada(uint64(now), _tipoProducto, msg.sender);
+        emit VerduraCreada(uint64(now), _PLUCode, msg.sender);
         return newItemId;
     }
 
@@ -67,10 +67,10 @@ contract CIIANLib is ERC721Full {
         return (TokenList[_itemID].numAcciones);
     }
     
-    function comprarToken(uint8 _tipoProducto, string calldata _ubicacionAccion, string calldata _tokenURI) external{
+    function comprarToken(uint8 _PLUCode, string calldata _ubicacionAccion, string calldata _tokenURI) external{
         address from = msg.sender;
         _token.transferFrom(from, address(this), 1000);
-        createProduct(msg.sender, _tipoProducto, _ubicacionAccion, _tokenURI);
+        createProduct(msg.sender, _PLUCode, _ubicacionAccion, _tokenURI);
     }
     
     function getEstatusProducto(uint256 _itemID) public view returns (uint32 _idAccion, uint64 _horaAccion,

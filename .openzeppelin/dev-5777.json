@@ -1,0 +1,342 @@
+{
+  "contracts": {
+    "CIIANToken": {
+      "address": "0x24eEEb72792e63D2675b00Bc6Bd66A19700bad53",
+      "constructorCode": "60806040523480156200001157600080fd5b506040518060400160405280600b81526020017f434949414e20546f6b656e0000000000000000000000000000000000000000008152506040518060400160405280600681526020017f434949414e5400000000000000000000000000000000000000000000000000008152508181620000986301ffc9a760e01b6200011c60201b60201c565b620000b06380ac58cd60e01b6200011c60201b60201c565b620000c863780e9d6360e01b6200011c60201b60201c565b8160099080519060200190620000e092919062000225565b5080600a9080519060200190620000f992919062000225565b5062000112635b5e139f60e01b6200011c60201b60201c565b50505050620002d4565b63ffffffff60e01b817bffffffffffffffffffffffffffffffffffffffffffffffffffffffff19161415620001b9576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601c8152602001807f4552433136353a20696e76616c696420696e746572666163652069640000000081525060200191505060405180910390fd5b6001600080837bffffffffffffffffffffffffffffffffffffffffffffffffffffffff19167bffffffffffffffffffffffffffffffffffffffffffffffffffffffff1916815260200190815260200160002060006101000a81548160ff02191690831515021790555050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106200026857805160ff191683800117855562000299565b8280016001018555821562000299579182015b82811115620002985782518255916020019190600101906200027b565b5b509050620002a89190620002ac565b5090565b620002d191905b80821115620002cd576000816000905550600101620002b3565b5090565b90565b6135a180620002e46000396000f3fe",
+      "bodyBytecodeHash": "16fcfd6a4185da0292ad754872a6521e22910dc0c9d8f7f1138a0867a0b1ce62",
+      "localBytecodeHash": "2a3a87a15720a1b2a868d591c27b390bad0ee5566304a03b851dfb8a03e087bb",
+      "deployedBytecodeHash": "2a3a87a15720a1b2a868d591c27b390bad0ee5566304a03b851dfb8a03e087bb",
+      "types": {
+        "t_bool": {
+          "id": "t_bool",
+          "kind": "elementary",
+          "label": "bool"
+        },
+        "t_mapping<t_bool>": {
+          "id": "t_mapping<t_bool>",
+          "valueType": "t_bool",
+          "label": "mapping(key => bool)",
+          "kind": "mapping"
+        },
+        "t_address": {
+          "id": "t_address",
+          "kind": "elementary",
+          "label": "address"
+        },
+        "t_mapping<t_address>": {
+          "id": "t_mapping<t_address>",
+          "valueType": "t_address",
+          "label": "mapping(key => address)",
+          "kind": "mapping"
+        },
+        "t_struct<Counters.Counter>": {
+          "id": "t_struct<Counters.Counter>",
+          "kind": "struct",
+          "label": "Counters.Counter",
+          "members": [
+            {
+              "label": "_value",
+              "astId": 714,
+              "type": "t_uint256",
+              "src": "1024:14:5"
+            }
+          ]
+        },
+        "t_uint256": {
+          "id": "t_uint256",
+          "kind": "elementary",
+          "label": "uint256"
+        },
+        "t_mapping<t_struct<Counters.Counter>>": {
+          "id": "t_mapping<t_struct<Counters.Counter>>",
+          "valueType": "t_struct<Counters.Counter>",
+          "label": "mapping(key => Counters.Counter)",
+          "kind": "mapping"
+        },
+        "t_array:dyn<t_uint256>": {
+          "id": "t_array:dyn<t_uint256>",
+          "valueType": "t_uint256",
+          "length": "dyn",
+          "kind": "array",
+          "label": "uint256[]"
+        },
+        "t_mapping<t_array:dyn<t_uint256>>": {
+          "id": "t_mapping<t_array:dyn<t_uint256>>",
+          "valueType": "t_array:dyn<t_uint256>",
+          "label": "mapping(key => uint256[])",
+          "kind": "mapping"
+        },
+        "t_mapping<t_uint256>": {
+          "id": "t_mapping<t_uint256>",
+          "valueType": "t_uint256",
+          "label": "mapping(key => uint256)",
+          "kind": "mapping"
+        },
+        "t_string": {
+          "id": "t_string",
+          "kind": "elementary",
+          "label": "string"
+        },
+        "t_mapping<t_string>": {
+          "id": "t_mapping<t_string>",
+          "valueType": "t_string",
+          "label": "mapping(key => string)",
+          "kind": "mapping"
+        },
+        "t_struct<CIIANToken.Producto>": {
+          "id": "t_struct<CIIANToken.Producto>",
+          "kind": "struct",
+          "label": "CIIANToken.Producto",
+          "members": [
+            {
+              "label": "creacionHora",
+              "astId": 47,
+              "type": "t_uint64",
+              "src": "1060:19:1"
+            },
+            {
+              "label": "PLUCode",
+              "astId": 49,
+              "type": "t_uint8",
+              "src": "1090:13:1"
+            },
+            {
+              "label": "numAcciones",
+              "astId": 51,
+              "type": "t_uint16",
+              "src": "1114:18:1"
+            },
+            {
+              "label": "creacionAddress",
+              "astId": 53,
+              "type": "t_address",
+              "src": "1143:23:1"
+            },
+            {
+              "label": "Historia",
+              "astId": 57,
+              "type": "t_mapping<t_struct<CIIANToken.Accion>>",
+              "src": "1177:35:1"
+            }
+          ]
+        },
+        "t_uint64": {
+          "id": "t_uint64",
+          "kind": "elementary",
+          "label": "uint64"
+        },
+        "t_uint8": {
+          "id": "t_uint8",
+          "kind": "elementary",
+          "label": "uint8"
+        },
+        "t_uint16": {
+          "id": "t_uint16",
+          "kind": "elementary",
+          "label": "uint16"
+        },
+        "t_struct<CIIANToken.Accion>": {
+          "id": "t_struct<CIIANToken.Accion>",
+          "kind": "struct",
+          "label": "CIIANToken.Accion",
+          "members": [
+            {
+              "label": "descripcionAccion",
+              "astId": 60,
+              "type": "t_string",
+              "src": "1253:24:1"
+            },
+            {
+              "label": "horaAccion",
+              "astId": 62,
+              "type": "t_uint64",
+              "src": "1288:17:1"
+            },
+            {
+              "label": "ubicacionAccion",
+              "astId": 64,
+              "type": "t_string",
+              "src": "1316:22:1"
+            },
+            {
+              "label": "usuarioAccion",
+              "astId": 66,
+              "type": "t_address",
+              "src": "1349:21:1"
+            }
+          ]
+        },
+        "t_mapping<t_struct<CIIANToken.Accion>>": {
+          "id": "t_mapping<t_struct<CIIANToken.Accion>>",
+          "valueType": "t_struct<CIIANToken.Accion>",
+          "label": "mapping(key => CIIANToken.Accion)",
+          "kind": "mapping"
+        },
+        "t_mapping<t_struct<CIIANToken.Producto>>": {
+          "id": "t_mapping<t_struct<CIIANToken.Producto>>",
+          "valueType": "t_struct<CIIANToken.Producto>",
+          "label": "mapping(key => CIIANToken.Producto)",
+          "kind": "mapping"
+        },
+        "t_mapping<t_uint16>": {
+          "id": "t_mapping<t_uint16>",
+          "valueType": "t_uint16",
+          "label": "mapping(key => uint16)",
+          "kind": "mapping"
+        }
+      },
+      "storage": [
+        {
+          "contract": "ERC165",
+          "path": "@openzeppelin\\contracts\\introspection\\ERC165.sol",
+          "label": "_supportedInterfaces",
+          "astId": 767,
+          "type": "t_mapping<t_bool>",
+          "src": "489:52:6"
+        },
+        {
+          "contract": "ERC721",
+          "path": "@openzeppelin\\contracts\\token\\ERC721\\ERC721.sol",
+          "label": "_tokenOwner",
+          "astId": 1567,
+          "type": "t_mapping<t_address>",
+          "src": "809:48:12"
+        },
+        {
+          "contract": "ERC721",
+          "path": "@openzeppelin\\contracts\\token\\ERC721\\ERC721.sol",
+          "label": "_tokenApprovals",
+          "astId": 1571,
+          "type": "t_mapping<t_address>",
+          "src": "913:52:12"
+        },
+        {
+          "contract": "ERC721",
+          "path": "@openzeppelin\\contracts\\token\\ERC721\\ERC721.sol",
+          "label": "_ownedTokensCount",
+          "astId": 1575,
+          "type": "t_mapping<t_struct<Counters.Counter>>",
+          "src": "1023:63:12"
+        },
+        {
+          "contract": "ERC721",
+          "path": "@openzeppelin\\contracts\\token\\ERC721\\ERC721.sol",
+          "label": "_operatorApprovals",
+          "astId": 1581,
+          "type": "t_mapping<t_bool>",
+          "src": "1141:73:12"
+        },
+        {
+          "contract": "ERC721Enumerable",
+          "path": "@openzeppelin\\contracts\\token\\ERC721\\ERC721Enumerable.sol",
+          "label": "_ownedTokens",
+          "astId": 2226,
+          "type": "t_mapping<t_array:dyn<t_uint256>>",
+          "src": "425:50:13"
+        },
+        {
+          "contract": "ERC721Enumerable",
+          "path": "@openzeppelin\\contracts\\token\\ERC721\\ERC721Enumerable.sol",
+          "label": "_ownedTokensIndex",
+          "astId": 2230,
+          "type": "t_mapping<t_uint256>",
+          "src": "545:53:13"
+        },
+        {
+          "contract": "ERC721Enumerable",
+          "path": "@openzeppelin\\contracts\\token\\ERC721\\ERC721Enumerable.sol",
+          "label": "_allTokens",
+          "astId": 2233,
+          "type": "t_array:dyn<t_uint256>",
+          "src": "659:28:13"
+        },
+        {
+          "contract": "ERC721Enumerable",
+          "path": "@openzeppelin\\contracts\\token\\ERC721\\ERC721Enumerable.sol",
+          "label": "_allTokensIndex",
+          "astId": 2237,
+          "type": "t_mapping<t_uint256>",
+          "src": "758:51:13"
+        },
+        {
+          "contract": "ERC721Metadata",
+          "path": "@openzeppelin\\contracts\\token\\ERC721\\ERC721Metadata.sol",
+          "label": "_name",
+          "astId": 2587,
+          "type": "t_string",
+          "src": "246:20:15"
+        },
+        {
+          "contract": "ERC721Metadata",
+          "path": "@openzeppelin\\contracts\\token\\ERC721\\ERC721Metadata.sol",
+          "label": "_symbol",
+          "astId": 2589,
+          "type": "t_string",
+          "src": "293:22:15"
+        },
+        {
+          "contract": "ERC721Metadata",
+          "path": "@openzeppelin\\contracts\\token\\ERC721\\ERC721Metadata.sol",
+          "label": "_baseURI",
+          "astId": 2591,
+          "type": "t_string",
+          "src": "338:23:15"
+        },
+        {
+          "contract": "ERC721Metadata",
+          "path": "@openzeppelin\\contracts\\token\\ERC721\\ERC721Metadata.sol",
+          "label": "_tokenURIs",
+          "astId": 2595,
+          "type": "t_mapping<t_string>",
+          "src": "407:45:15"
+        },
+        {
+          "contract": "CIIANToken",
+          "path": "..\\..\\D\\Proyectos\\trazabilidad\\contracts\\CIIANToken.sol",
+          "label": "_tokenIds",
+          "astId": 35,
+          "type": "t_struct<Counters.Counter>",
+          "src": "851:34:1"
+        },
+        {
+          "contract": "CIIANToken",
+          "path": "..\\..\\D\\Proyectos\\trazabilidad\\contracts\\CIIANToken.sol",
+          "label": "_token",
+          "astId": 37,
+          "type": "t_address",
+          "src": "892:21:1"
+        },
+        {
+          "contract": "CIIANToken",
+          "path": "..\\..\\D\\Proyectos\\trazabilidad\\contracts\\CIIANToken.sol",
+          "label": "TokenList",
+          "astId": 41,
+          "type": "t_mapping<t_struct<CIIANToken.Producto>>",
+          "src": "920:39:1"
+        },
+        {
+          "contract": "CIIANToken",
+          "path": "..\\..\\D\\Proyectos\\trazabilidad\\contracts\\CIIANToken.sol",
+          "label": "ProductoList",
+          "astId": 45,
+          "type": "t_mapping<t_uint16>",
+          "src": "966:38:1"
+        }
+      ],
+      "warnings": {
+        "hasConstructor": true,
+        "hasSelfDestruct": false,
+        "hasDelegateCall": false,
+        "hasInitialValuesInDeclarations": false,
+        "uninitializedBaseContracts": []
+      }
+    }
+  },
+  "solidityLibs": {},
+  "proxies": {},
+  "manifestVersion": "2.2",
+  "version": "1.0.0",
+  "proxyAdmin": {
+    "address": "0xb3Ae516d1Fd27692d55e0FBB5C2A4b4407f7C788"
+  }
+}

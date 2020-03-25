@@ -8,6 +8,7 @@ pragma solidity ^0.5.0;
 import '@openzeppelin/contracts/token/ERC721/ERC721Full.sol';
 import '@openzeppelin/contracts/token/ERC20/IERC20.sol';
 import "@openzeppelin/contracts/drafts/Counters.sol";
+
 //import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v2.5.0/contracts/token/ERC721/ERC721Full.sol";
 //import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v2.5.0/contracts/token/ERC20/IERC20.sol";
 //import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/v2.5.0/contracts/drafts/Counters.sol";
@@ -22,62 +23,64 @@ contract CIIANToken is ERC721Full {
     //Structs used
     struct Producto {
         uint64 creacionHora;
-        uint8 PLUCode;
+        uint16 PLUCode;
         uint16 numAcciones;
         address creacionAddress;
-        mapping (uint16 => Accion) Historia; // Y si mejor usamos un aproach similar al del DNA en los Gatos o Zombies?
+        mapping (uint16 => Accion) Historia;
     }
-    
-    //Esto deberia estar publico?
+
     struct Accion {
-        uint32 idAccion;
+        string descripcionAccion;
         uint64 horaAccion;
         string ubicacionAccion;
         address usuarioAccion;
     }
 
     //Events
-    event VerduraCreada(uint64 _creacionHora, uint8 _tipoProducto);
-    event AccionTaken(uint8 _tipoProducto, uint32 _idAccion, uint64 _horaAccion, address _usuarioAccion);
+    event VerduraCreada(uint64 _creacionHora, uint16 _PLUCode, address _creacionAddress);
+    event AccionTaken(uint16 _PLUCode, string _descripcionAccion, uint64 _horaAccion, address _usuarioAccion);
 
     constructor() ERC721Full("CIIAN Token", "CIIANT") public {
     }
-//Quien crea el token sera el mismo que lo posea?
-    function createProduct(address _user, uint8 _tipoProducto, string memory _ubicacionAccion, 
+
+    function createProduct(uint16 _PLUCode, string memory _ubicacionAccion,
     string memory _tokenURI) public returns (uint256) {
         _tokenIds.increment();
         uint256 newItemId = _tokenIds.current();
-        //
         TokenList[newItemId].creacionHora = uint64(now);
-        TokenList[newItemId].tipoProducto = _tipoProducto;
+        TokenList[newItemId].PLUCode = _PLUCode;
         TokenList[newItemId].numAcciones = 1;
         TokenList[newItemId].creacionAddress = msg.sender;
-        TokenList[newItemId].Historia[1].idAccion = "Creacion Del Token";
+        TokenList[newItemId].Historia[1].descripcionAccion = "Creacion del Token";
         TokenList[newItemId].Historia[1].horaAccion = uint64(now);
         TokenList[newItemId].Historia[1].ubicacionAccion = _ubicacionAccion;
         TokenList[newItemId].Historia[1].usuarioAccion = msg.sender;
-        //
-        _mint(_user, newItemId);
+        _mint(msg.sender, newItemId);
         _setTokenURI(newItemId, _tokenURI);
-        //emit VerduraCreada(uint64(now), _tipoProducto); //Que cosas deberian ir en el emit
+        emit VerduraCreada(uint64(now), _PLUCode, msg.sender);
         return newItemId;
     }
 
     function getNumeroAcciones(uint256 _itemID) public view returns (uint16) {
         return (TokenList[_itemID].numAcciones);
     }
-    
-    function comprarToken(uint8 _tipoProducto, string calldata _ubicacionAccion, string calldata _tokenURI) external{
-        address from = msg.sender;
-        _token.transferFrom(from, address(this), 1000);
-        createProduct(msg.sender, _tipoProducto, _ubicacionAccion, _tokenURI);
+
+    function updateAccionProducto(uint256 _itemID, string memory _descripcionAccion, string memory _ubicacionAccion) public {
+        uint16 _numAcciones = TokenList[_itemID].numAcciones + 1;
+        TokenList[_itemID].Historia[_numAcciones].descripcionAccion = _descripcionAccion;
+        TokenList[_itemID].Historia[_numAcciones].horaAccion = uint64(now);
+        TokenList[_itemID].Historia[_numAcciones].ubicacionAccion = _ubicacionAccion;
+        TokenList[_itemID].Historia[_numAcciones].usuarioAccion = msg.sender;
+        emit AccionTaken(TokenList[_itemID].PLUCode, _descripcionAccion, uint64(now), msg.sender);
     }
-    
-    function getEstatusProducto(uint256 _itemID) public view returns (uint32 _idAccion, uint64 _horaAccion, 
+
+    function getEstatusProducto(uint256 _itemID) public view returns (string memory _descripcionAccion, uint64 _horaAccion,
     string memory _ubicacionAccion, address _usuarioAccion) {
         uint16 accionActual = TokenList[_itemID].numAcciones;
-        return (TokenList[_itemID].Historia[accionActual].idAccion, TokenList[_itemID].Historia[accionActual].horaAccion, 
+        return (TokenList[_itemID].Historia[accionActual].descripcionAccion, TokenList[_itemID].Historia[accionActual].horaAccion,
         TokenList[_itemID].Historia[accionActual].ubicacionAccion, TokenList[_itemID].Historia[accionActual].usuarioAccion);
     }
+
+    //Crear Metodo que envie toda la historia de un Token
 
 }
