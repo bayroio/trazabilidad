@@ -71,6 +71,7 @@ contract CIIANToken is ERC721Full {
         TokenList[_itemID].Historia[_numAcciones].horaAccion = uint64(now);
         TokenList[_itemID].Historia[_numAcciones].ubicacionAccion = _ubicacionAccion;
         TokenList[_itemID].Historia[_numAcciones].usuarioAccion = msg.sender;
+        TokenList[_itemID].numAcciones = _numAcciones;
         emit AccionTaken(TokenList[_itemID].PLUCode, _descripcionAccion, uint64(now), msg.sender);
     }
 
