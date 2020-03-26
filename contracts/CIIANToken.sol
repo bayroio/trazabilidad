@@ -62,6 +62,7 @@ contract CIIANToken is ERC721Full {
     }
 
     function getNumeroAcciones(uint256 _itemID) public view returns (uint16) {
+        require(_exists(_itemID), "ERR: Token no existe");
         return (TokenList[_itemID].numAcciones);
     }
 
@@ -87,10 +88,9 @@ contract CIIANToken is ERC721Full {
         emit AccionTaken(TokenList[_itemID].PLUCode, _descripcionAccion, uint64(now), msg.sender);
     }
 
-    //Crear un Update privado para que solo sea utilizable por el dueño del Token
-
     function getEstatusProducto(uint256 _itemID) public view returns (string memory _descripcionAccion, uint64 _horaAccion,
     string memory _ubicacionAccion, address _usuarioAccion) {
+        require(_exists(_itemID), "ERR: Token no existe");
         uint16 accionActual = TokenList[_itemID].numAcciones;
         return (TokenList[_itemID].Historia[accionActual].descripcionAccion, TokenList[_itemID].Historia[accionActual].horaAccion,
         TokenList[_itemID].Historia[accionActual].ubicacionAccion, TokenList[_itemID].Historia[accionActual].usuarioAccion);
